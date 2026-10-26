@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zakupator – sprzedawaj i kupuj najtaniej</title>
+<meta name="description" content="Zeskanuj przedmiot, a AI go wyceni. Wyszukaj dowolny produkt, a Zakupator znajdzie najtańszą ofertę w internecie.">
+<meta name="theme-color" content="#06070f">
+<link rel="icon" href="favicon.png">
+<style>
+:root{--bg:#06070f;--card:#10131f;--line:#1e2333;--text:#f4f6fb;--dim:#8b93a7;--green:#4ade80;--ink:#04120a;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:960px;margin:0 auto;padding:0 22px}
+header{display:flex;align-items:center;gap:12px;padding:22px 0}
+header img{width:40px;height:40px;border-radius:10px}
+header b{font-size:20px;letter-spacing:.2px}
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;padding:48px 0 64px}
+h1{font-size:clamp(34px,6vw,56px);line-height:1.05;margin:0 0 18px;letter-spacing:-1.2px}
+.lead{color:var(--dim);font-size:19px;max-width:30em;margin:0 0 30px}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;flex-direction:column;justify-content:center;min-height:58px;padding:10px 24px;border-radius:14px;text-decoration:none;font-weight:800;font-size:17px;border:1px solid var(--line);color:var(--text);background:var(--card)}
+.btn small{font-weight:500;font-size:12px;color:var(--dim)}
+.btn.main{background:var(--green);color:var(--ink);border-color:var(--green)}
+.btn.main small{color:#0b3a22}
+.btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.btn[aria-disabled=true]{opacity:.55;pointer-events:none}
+.icon{justify-self:center;width:min(100%,300px);border-radius:22%;box-shadow:0 30px 80px -20px rgba(74,222,128,.35)}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding-bottom:64px}
+.tab{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px}
+.tab h2{margin:0 0 8px;font-size:24px}
+.tab p{margin:0;color:var(--dim)}
+.tab .tag{display:inline-block;margin-bottom:14px;color:var(--green);font-weight:700;font-size:14px}
+.install{padding-bottom:72px}
+.install h2{font-size:28px;margin:0 0 18px}
+.install ol{margin:0;padding-left:22px;color:var(--dim)}
+.install li{margin:8px 0}
+.install li b{color:var(--text)}
+footer{border-top:1px solid var(--line);padding:26px 0 40px;color:var(--dim);font-size:14px}
+footer a{color:var(--text)}
+@media(max-width:700px){.hero{grid-template-columns:1fr;padding-top:20px}.icon{width:160px;order:-1;justify-self:start}.tabs{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><img src="icon.png" alt=""><b>Zakupator</b></header>
+
+  <section class="hero">
+    <div>
+      <h1>Sprzedaj drożej. Kup taniej.</h1>
+      <p class="lead">Zrób zdjęcie przedmiotu, a AI poda jego cenę. Wpisz, czego szukasz, a Zakupator pokaże najtańsze oferty z całego internetu.</p>
+      <div class="btns">
+        <a class="btn main" id="android" href="#">Pobierz na Androida<small id="ver">plik APK</small></a>
+        <a class="btn" id="ios" href="#" aria-disabled="true">iPhone<small>wkrótce</small></a>
+      </div>
+    </div>
+    <img class="icon" src="icon.png" alt="Ikona aplikacji Zakupator: koszyk z banknotami">
+  </section>
+
+  <section class="tabs" aria-label="Funkcje">
+    <div class="tab">
+      <span class="tag">Zakładka Sprzedaj</span>
+      <h2>Skanuj i poznaj cenę</h2>
+      <p>Zdjęcie wystarczy. AI rozpoznaje przedmiot, ocenia stan i wycenia go na podstawie aktualnych ofert.</p>
+    </div>
+    <div class="tab">
+      <span class="tag">Zakładka Kup</span>
+      <h2>Najtańsza oferta na górze</h2>
+      <p>Jedno pole wyszukiwania przeszukuje sklepy w internecie i układa wyniki od najniższej ceny.</p>
+    </div>
+  </section>
+
+  <section class="install" id="instalacja">
+    <h2>Jak zainstalować na Androidzie</h2>
+    <ol>
+      <li>Kliknij <b>Pobierz na Androida</b> i zapisz plik <b>zakupator.apk</b>.</li>
+      <li>Otwórz pobrany plik. Gdy telefon zapyta, zezwól przeglądarce na <b>instalowanie z nieznanych źródeł</b>.</li>
+      <li>Potwierdź instalację i uruchom Zakupatora.</li>
+    </ol>
+  </section>
+
+  <footer>
+    <span id="foot">Zakupator</span> · <a id="releases" href="#">Wszystkie wersje</a> · <a id="repo" href="#">Kod źródłowy</a>
+  </footer>
+</div>
+
+<script>
+// Jeśli strona stoi na GitHub Pages (uzytkownik.github.io/repo), dane wykryją się same.
+// Przy własnej domenie wpisz je tutaj:
+var CONFIG = { user: "", repo: "", apkName: "zakupator.apk", iosUrl: "" };
+
+(function () {
+  var host = location.hostname, path = location.pathname.split("/").filter(Boolean);
+  var user = CONFIG.user || (host.endsWith(".github.io") ? host.split(".")[0] : "");
+  var repo = CONFIG.repo || (path[0] || (user ? user + ".github.io" : ""));
+  var base = "https://github.com/" + user + "/" + repo;
+  var $ = function (id) { return document.getElementById(id); };
+
+  $("android").href = base + "/releases/latest/download/" + CONFIG.apkName;
+  $("releases").href = base + "/releases";
+  $("repo").href = base;
+
+  if (CONFIG.iosUrl) {
+    var ios = $("ios");
+    ios.href = CONFIG.iosUrl;
+    ios.removeAttribute("aria-disabled");
+    ios.querySelector("small").textContent = "pobierz";
+  }
+
+  if (user && repo) {
+    fetch("https://api.github.com/repos/" + user + "/" + repo + "/releases/latest")
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (!d || !d.tag_name) return;
+        $("ver").textContent = "wersja " + d.tag_name.replace(/^v/, "") + " · plik APK";
+      })
+      .catch(function () {});
+  }
+})();
+</script>
+</body>
+</html>
